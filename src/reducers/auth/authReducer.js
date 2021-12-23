@@ -8,8 +8,10 @@ import {
   AUTH_FAILURE,
   FORGET_PASSWORD,
   RESET_PASSWORD,
+  getUser,
 } from "./authActions";
 import { AsyncStorage } from "react-native";
+
 import UserMessages from "../../messages/user";
 
 const initialState = {
@@ -27,6 +29,8 @@ export const authReducer = (state = initialState, action) => {
       return initialState;
     }
     const parsedUser = await JSON.parse(getUser);
+    // const parsedUser = await getUser();
+    
     return (initialState.user = parsedUser.data);
   };
   userInformation();
@@ -75,7 +79,7 @@ export const authReducer = (state = initialState, action) => {
         isLoading: false,
       };
     case EDIT_INFO:
-      state.user.phone = action.phone;
+      state.user.phoneNumber = action.phone;
       state.user.address = action.address;
       //Return ...state.user make the comp rerender
       return {

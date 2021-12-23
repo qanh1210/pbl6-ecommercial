@@ -20,8 +20,8 @@ export default SearchItem = ({ item, navigation }) => {
           color={Colors.grey}
           style={{ marginRight: 20 }}
         />
-        <Image style={styles.image} source={{ uri: item.thumb }} />
-        <CustomText style={styles.name}>{item.filename}</CustomText>
+        <Image style={styles.image} source={{ uri: item.avatar }} />
+        <CustomText style={styles.name}>{item.name}</CustomText>
       </TouchableOpacity>
     </View>
   );

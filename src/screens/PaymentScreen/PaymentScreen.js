@@ -14,6 +14,7 @@ import { SummaryOrder } from '../PreOrderScreen/components';
 export const PaymentScreen = (props) => {
   const [loading, setLoading] = useState(true);
   const carts = useSelector((state) => state.cart.cartItems);
+  const { cartItems } = props.route.params;
   const cartLoading = useSelector((state) => state.cart.isLoading);
   const orderLoading = useSelector((state) => state.order.isLoading);
   let token = props.route.params.token;
@@ -45,8 +46,13 @@ export const PaymentScreen = (props) => {
     total,
     cartId,
     fullAddress,
+    // orderItems,
+    // name,
+    // phone,
+    // totalPrice,
+    // cartId,
+    // deliveryAddress,
   } = props.route.params;
-
   //action Add Order
   const addOrderAct = async () => {
     try {
@@ -60,6 +66,13 @@ export const PaymentScreen = (props) => {
           paymentMethod,
           fullAddress,
           phone,
+            // token,
+            // orderItems,
+            // name,
+            // totalPrice,
+            // paymentMethod,
+            // deliveryAddress,
+            // phone
         ),
       );
       await dispatch(resetCart(cartId));
@@ -84,6 +97,8 @@ export const PaymentScreen = (props) => {
               token={token}
             />
             <SummaryOrder cartItems={carts.items} total={total} />
+            {/* <SummaryOrder cartItems={cartItems} total={total} /> */}
+            
           </ScrollView>
           <View style={styles.total}>
             <View style={styles.orderButton}>

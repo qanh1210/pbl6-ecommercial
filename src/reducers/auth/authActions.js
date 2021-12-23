@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native';
-import { API_URL } from '../../utils/Config';
+import { API_URL, API_URL1 } from '../../utils/Config';
 import { timeoutPromise } from '../../utils/Tools';
 
 export const AUTH_LOADING = 'AUTH_LOADING';
@@ -15,6 +15,7 @@ export const RESET_PASSWORD = 'RESET_PASSWORD';
 export const RESET_ERROR = 'RESET_ERROR';
 
 import AskingExpoToken from '../../components/Notification/AskingNotiPermission';
+import { NOTIFICATIONS } from 'expo-permissions';
 
 //Create dataStorage
 const saveDataToStorage = (name, data) => {
@@ -33,7 +34,7 @@ export const SignUp = (name, email, password) => {
     });
     try {
       const response = await timeoutPromise(
-        fetch(`${API_URL}/user/register`, {
+        fetch(`https://pbl6.herokuapp.com/v1/auth/register`, {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -71,7 +72,7 @@ export const Login = (email, password) => {
     const pushToken = await AskingExpoToken();
     try {
       const response = await timeoutPromise(
-        fetch(`${API_URL}/user/login`, {
+        fetch(`https://pbl6.herokuapp.com/v1/auth/login`, {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -80,7 +81,7 @@ export const Login = (email, password) => {
           body: JSON.stringify({
             email,
             password,
-            pushTokens: [pushToken],
+            // pushTokens: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWIyNTkzMzgwZTY2MjAwMDkxNDhhMGEiLCJpYXQiOjE2MzkwNzgzMTd9.ooYNeUJNItvQ5W7xuwLN1NH4YbxQQW0K7XJAuBq6kr4',
           }),
         }),
       );
@@ -104,7 +105,7 @@ export const Login = (email, password) => {
   };
 };
 
-export const EditInfo = (phone, address) => {
+export const EditInfo = (fullName, phoneNumber, address) => {
   return async (dispatch, getState) => {
     const user = getState().auth.user;
     dispatch({
@@ -112,15 +113,17 @@ export const EditInfo = (phone, address) => {
     });
     try {
       const response = await timeoutPromise(
-        fetch(`${API_URL}/user/${user.userid}`, {
+        fetch(`https://pbl6.herokuapp.com/v1/user/update-information`, {
+        // fetch(`${API_URL}/user/${user.userid}`, {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
             'auth-token': user.token,
           },
-          method: 'PATCH',
+          method: 'PUT',
           body: JSON.stringify({
-            phone,
+            fullName,  
+            phoneNumber,
             address,
           }),
         }),
@@ -135,7 +138,8 @@ export const EditInfo = (phone, address) => {
 
       dispatch({
         type: EDIT_INFO,
-        phone,
+        fullName,
+        phoneNumber,
         address,
       });
     } catch (err) {
@@ -194,7 +198,7 @@ export const ForgetPassword = (email) => {
     });
     try {
       const response = await timeoutPromise(
-        fetch(`${API_URL}/user/reset_pw`, {
+        fetch(`https://pbl6.herokuapp.com/v1/auth/reset-password`, {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -284,3 +288,16 @@ const setLogoutTimer = (expirationTime) => {
     }, expirationTime);
   };
 };
+
+// export const getUser = () => {
+//     // if(token == null) return null;
+//     return fetch('https://cbcf880m45.execute-api.eu-central-1.amazonaws.com/production/v1/user/me', {
+//         method: 'GET',
+//         // headers: {"Authorization": "Bearer " + token}
+//     }).then((response) => {
+//       console.log(response.json());
+//         return response.json();
+//     }).catch((err) => {
+//         console.log(err);
+//     })
+// }

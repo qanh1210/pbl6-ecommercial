@@ -6,7 +6,7 @@ import CustomText from "../../../components/UI/CustomText";
 //PropTypes check
 import PropTypes from "prop-types";
 
-const Detail = ({ icon, content }) => {
+const Detail = ({ icon, content}) => {
   const Icon =
     icon === "location-on" || icon === "person"
       ? MaterialIcons

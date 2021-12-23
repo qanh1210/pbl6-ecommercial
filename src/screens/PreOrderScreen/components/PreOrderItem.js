@@ -20,12 +20,12 @@ class PreOrderItem extends React.PureComponent {
               resizeMode: "stretch",
               borderRadius: 5,
             }}
-            source={{ uri: item.item.thumb }}
+            source={{ uri: item.item.avatar }}
           />
         </View>
         <View style={styles.right}>
           <View>
-            <CustomText style={styles.title}>{item.item.filename}</CustomText>
+            <CustomText style={styles.title}>{item.item.name}</CustomText>
           </View>
           <NumberFormat
             value={total.toString()}

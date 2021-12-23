@@ -74,7 +74,7 @@ export class ModalComp extends React.PureComponent {
               style={{ borderRadius: 20, width: "45%", overflow: "hidden" }}
             >
               <Image
-                source={{ uri: item.thumb }}
+                source={{ uri: item.avatar }}
                 style={{
                   height: 100,
                   resizeMode: "stretch",
@@ -84,10 +84,7 @@ export class ModalComp extends React.PureComponent {
             <View style={styles.quantity}>
               <View>
                 <CustomText style={{ ...styles.title, fontSize: 15 }}>
-                  {item.filename}
-                </CustomText>
-                <CustomText style={{ fontSize: 12, color: Colors.grey }}>
-                  Cung cấp bởi Cát Tường
+                  {item.name}
                 </CustomText>
               </View>
               <CustomText

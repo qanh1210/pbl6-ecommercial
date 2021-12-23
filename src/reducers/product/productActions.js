@@ -11,7 +11,7 @@ export const fetchProducts = () => {
     });
     try {
       const response = await timeoutPromise(
-        fetch(`${API_URL}/product`, {
+        fetch(`https://pbl6.herokuapp.com/v1/products`, {
           method: "GET",
         })
       );
@@ -25,7 +25,7 @@ export const fetchProducts = () => {
       const resData = await response.json();
       dispatch({
         type: FETCH_PRODUCTS,
-        products: resData.content,
+        products: resData
       });
     } catch (err) {
       throw err;

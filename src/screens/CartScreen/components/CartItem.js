@@ -53,23 +53,23 @@ export class CartItem extends React.PureComponent {
               resizeMode: "stretch",
               borderRadius: 5,
             }}
-            source={{ uri: item.item.thumb }}
+            source={{ uri: item.item.avatar }}
           />
         </View>
         <View style={styles.right}>
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            <CustomText style={styles.title}>{item.item.filename}</CustomText>
+            <CustomText style={styles.title}>{item.item.name}</CustomText>
             <View>
               <TouchableOpacity onPress={onRemove}>
                 <MaterialCommunityIcons name='close' size={20} color='#000' />
               </TouchableOpacity>
             </View>
           </View>
-          <CustomText style={{ color: Colors.grey, fontSize: 12 }}>
+          {/* <CustomText style={{ color: Colors.grey, fontSize: 12 }}>
             Cung cấp bởi Cát Tường
-          </CustomText>
+          </CustomText> */}
           <NumberFormat price={sum.toString()} />
           <View style={styles.box}>
             <TouchableOpacity onPress={checkDesQuantity} style={styles.boxMin}>

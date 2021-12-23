@@ -18,15 +18,15 @@ export const ProfileBody = ({
       <View style={styles.titleContainer}>
         <CustomText style={styles.title}>Thông tin cá nhân</CustomText>
       </View>
-      <Detail icon='person' content={user.name} />
-      <Detail icon='email-outline' content={user.email} />
+      <Detail icon='person' content={user.user.fullName} />
+      <Detail icon='email-outline' content={user.user.email} />
       <Detail
         icon='phone'
-        content={user.phone.length === 0 ? "Not added yet" : user.phone}
+        content={user.user.phoneNumber === " " ? "Not added yet" : user.user.phoneNumber}
       />
       <Detail
         icon='location-on'
-        content={user.address.length === 0 ? "Not added yet" : user.address}
+        content={user.user.address === " " ? "Not added yet" : user.user.address}
       />
       <UploadButton
         uploadButton={uploadButton}

@@ -49,13 +49,13 @@ export const fetchOrder = () => {
 
 //Add order
 export const addOrder = (
-  token,
-  orderItems,
-  name,
-  totalAmount,
-  paymentMethod,
-  fullAddress,
-  phone
+    token,
+    orderItems,
+    name,
+    totalAmount,
+    paymentMethod,
+    fullAddress,
+    phone
 ) => {
   return async (dispatch, getState) => {
     dispatch({
@@ -64,27 +64,35 @@ export const addOrder = (
     const user = getState().auth.user;
     try {
       const response = await timeoutPromise(
+        // fetch(`https://cbcf880m45.execute-api.eu-central-1.amazonaws.com/production/v1/orders`, {
         fetch(`${API_URL}/order/post`, {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "auth-token": user.token,
-          },
-          method: "POST",
-          body: JSON.stringify({
-            token,
-            orderInfo: {
-              userId: user.userid,
-              items: orderItems,
-              name,
-              totalAmount,
-              paymentMethod,
-              address: fullAddress,
-              phone,
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              "auth-token": user.token,
             },
-          }),
-        })
-      );
+            method: "POST",
+            body: JSON.stringify({
+              token,
+              orderInfo: {
+                userId: user.userid,
+                items: orderItems,
+                name,
+                totalAmount,
+                paymentMethod,
+                address: fullAddress,
+                phone,
+              }
+            // //   userId: user.user._id,
+            // totalPrice: totalAmount,
+            // deliveryAddress: fullAddress,
+            // product: orderItems,
+            // status: 'pending'
+            // //   paymentMethod,
+            // //   phone,
+            }),
+          }));
+        // });
       if (!response.ok) {
         dispatch({
           type: ORDER_FAILURE,
@@ -94,10 +102,10 @@ export const addOrder = (
       const resData = await response.json();
       dispatch({
         type: ADD_ORDER,
-        orderItem: resData.content,
+        orderItem: resData,
       });
     } catch (err) {
-      throw error;
+      throw err;
     }
   };
 };

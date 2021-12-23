@@ -21,15 +21,15 @@ export const AuthBody = ({ navigation }) => {
     <>
       <ImageBackground
         style={{ flex: 1, position: "absolute", height, width }}
-        source={require("../../../assets/Images/flower3.jpg")}
+        source={require("../../../assets/Images/bg3.jpg")}
         blurRadius={10}
       ></ImageBackground>
-      <View style={{ position: "absolute", top: 100 }}>
+      {/* <View style={{ position: "absolute", top: 100 }}>
         <Image
           style={styles.logo}
-          source={require("../../../assets/Images/logo1.png")}
+          source={require("../../../assets/Images/logoShop1.png")}
         />
-      </View>
+      </View> */}
       <LottieView
         source={require("../../../components/IconAnimation/welcome.json")}
         autoPlay

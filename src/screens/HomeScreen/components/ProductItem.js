@@ -42,7 +42,7 @@ export class ProductItem extends React.PureComponent {
           >
             <TouchableOpacity onPress={toDetail}>
               <Image
-                source={{ uri: item.url }}
+                source={{ uri: item.avatar }}
                 style={styles.image}
                 onLoadStart={() => {
                   this.setState({ loading: true });
@@ -65,7 +65,7 @@ export class ProductItem extends React.PureComponent {
             )}
           </View>
           <View style={styles.center}>
-            <CustomText style={styles.name}>{item.filename}</CustomText>
+            <CustomText style={styles.name}>{item.name}</CustomText>
           </View>
           <View style={styles.info}>
             <View style={styles.rate}>

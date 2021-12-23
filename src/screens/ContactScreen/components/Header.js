@@ -29,7 +29,7 @@ export const Header = ({ navigation }) => {
       </View>
       <Image
         style={styles.image}
-        source={require("../../../assets/Images/logoTextWhite.png")}
+        source={require("../../../assets/Images/logoShop2.png")}
       />
     </View>
   );

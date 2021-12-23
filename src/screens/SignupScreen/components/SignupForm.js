@@ -112,13 +112,13 @@ const Signup = (props) => {
             }}
           >
             <View>
-              <CustomText style={styles.title}>REGISTER</CustomText>
+              <CustomText style={styles.title}>ĐĂNG KÝ</CustomText>
             </View>
             <View>
               <Field
                 name="username"
                 keyboardType="default"
-                label="Your Name"
+                label="Tên đầy đủ"
                 component={renderField}
                 icon="id-card"
                 autoCapitalize={true}
@@ -133,7 +133,7 @@ const Signup = (props) => {
               <Field
                 name="password"
                 keyboardType="default"
-                label="Password"
+                label="Mật khẩu"
                 component={renderField}
                 secureTextEntry={showPass ? false : true}
                 passIcon="pass"
@@ -144,7 +144,7 @@ const Signup = (props) => {
               <Field
                 name="confirmpassword"
                 keyboardType="default"
-                label="Confirm Password"
+                label="Nhập lại mật khẩu"
                 component={renderField}
                 secureTextEntry={showConfirmPass ? false : true}
                 passIcon="confirm"

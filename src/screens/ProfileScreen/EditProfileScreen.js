@@ -12,111 +12,122 @@ import { EditInfo } from "../../reducers";
 import Loader from "../../components/Loaders/Loader";
 
 export const EditProfileScreen = (props) => {
-  const { user } = props.route.params;
-  const loading = useSelector((state) => state.auth.isLoading);
-  const [address, setAddress] = useState(user.address);
-  const [phone, setPhone] = useState(user.phone);
-  const [disableButton, setDisableBotton] = useState(true);
-  const dispatch = useDispatch();
+    const { user } = props.route.params;
+    const loading = useSelector((state) => state.auth.isLoading);
+    const [address, setAddress] = useState(user.user.address);
+    const [phone, setPhone] = useState(user.user.phoneNumber);
+    const [fullName, setFullName] = useState(user.user.fullName);
+    const [disableButton, setDisableBotton] = useState(true);
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (user.phone !== phone || user.address !== address) {
-      setDisableBotton(false);
-    }
-  }, [address, phone]);
+    useEffect(() => {
+        if (user.phone !== phone || user.address !== address) {
+            setDisableBotton(false);
+        }
+    }, [address, phone]);
 
-  const updateInfoHandler = async () => {
-    if (phone.length === 10 && address.length >= 6) {
-      try {
-        await dispatch(EditInfo(phone, address));
-        props.navigation.navigate("Profile");
-      } catch (err) {
-        alert(err);
-      }
-    } else {
-      return Alert.alert("Error", "Thông tin không hợp lệ. Vui lòng nhập lại", [
-        {
-          text: "OK",
-        },
-      ]);
-    }
-  };
+    const updateInfoHandler = async () => {
+        if (phone.length === 10) {
+            try {
+                await dispatch(EditInfo(fullName, phone, address));
+                props.navigation.navigate("Profile");
+            } catch (err) {
+                alert(err);
+            }
+        } else {
+            return Alert.alert("Error", "Thông tin không hợp lệ. Vui lòng nhập lại", [
+                {
+                    text: "OK",
+                },
+            ]);
+        }
+    };
 
-  return (
-    <View style={styles.container}>
-      {loading ? <Loader /> : <></>}
-      <View style={styles.backIcon}>
-        <TouchableOpacity onPress={() => props.navigation.goBack()}>
-          <MaterialCommunityIcons name='arrow-left' size={30} color='black' />
-        </TouchableOpacity>
-      </View>
-      <View>
-        <View style={styles.infoContainer}>
-          <TextInput
-            label='Email'
-            value={user.email}
-            disabled
-            mode='outlined'
-            theme={{ colors: { primary: Colors.leave_green } }}
-            selectionColor={Colors.leave_green}
-            style={{ marginVertical: 10 }}
-          />
-          <TextInput
-            label='Phone'
-            value={phone}
-            mode='outlined'
-            theme={{ colors: { primary: Colors.leave_green } }}
-            selectionColor={Colors.leave_green}
-            onChangeText={(text) => setPhone(text)}
-            style={{ marginVertical: 10 }}
-            keyboardType='numeric'
-            returnKeyType='done'
-          />
-          <TextInput
-            label='Address'
-            value={address}
-            mode='outlined'
-            theme={{ colors: { primary: Colors.leave_green } }}
-            selectionColor={Colors.leave_green}
-            onChangeText={(text) => setAddress(text)}
-            style={{ marginVertical: 10 }}
-            autoCapitalize='words'
-          />
+    return (
+        <View style={styles.container}>
+            {loading ? <Loader /> : <></>}
+            <View style={styles.backIcon}>
+                <TouchableOpacity onPress={() => props.navigation.goBack()}>
+                    <MaterialCommunityIcons name='arrow-left' size={30} color='black' />
+                </TouchableOpacity>
+            </View>
+            <View>
+                <View style={styles.infoContainer}>
+                    <TextInput
+                        label='Email'
+                        value={user.user.email}
+                        disabled
+                        mode='outlined'
+                        theme={{ colors: { primary: Colors.leave_green } }}
+                        selectionColor={Colors.leave_green}
+                        style={{ marginVertical: 10 }}
+                    />
+                    <TextInput
+                        label='Full Name'
+                        value={fullName}
+                        mode='outlined'
+                        theme={{ colors: { primary: Colors.leave_green } }}
+                        selectionColor={Colors.leave_green}
+                        onChangeText={(text) => setFullName(text)}
+                        style={{ marginVertical: 10 }}
+                        autoCapitalize='words'
+                    />
+                    <TextInput
+                        label='Phone'
+                        value={phone}
+                        mode='outlined'
+                        theme={{ colors: { primary: Colors.leave_green } }}
+                        selectionColor={Colors.leave_green}
+                        onChangeText={(text) => setPhone(text)}
+                        style={{ marginVertical: 10 }}
+                        keyboardType='numeric'
+                        returnKeyType='done'
+                    />
+                    <TextInput
+                        label='Address'
+                        value={address}
+                        mode='outlined'
+                        theme={{ colors: { primary: Colors.leave_green } }}
+                        selectionColor={Colors.leave_green}
+                        onChangeText={(text) => setAddress(text)}
+                        style={{ marginVertical: 10 }}
+                        autoCapitalize='words'
+                    />
+                </View>
+                <View style={styles.button}>
+                    <Button
+                        icon='update'
+                        mode='contained'
+                        loading={loading}
+                        disabled={disableButton}
+                        onPress={updateInfoHandler}
+                        style={{
+                            height: 50,
+                            justifyContent: "center",
+                            backgroundColor: Colors.leave_green,
+                            marginHorizontal: 10,
+                        }}
+                    >
+                        Update Your Information
+                    </Button>
+                </View>
+            </View>
         </View>
-        <View style={styles.button}>
-          <Button
-            icon='update'
-            mode='contained'
-            loading={loading}
-            disabled={disableButton}
-            onPress={updateInfoHandler}
-            style={{
-              height: 50,
-              justifyContent: "center",
-              backgroundColor: Colors.leave_green,
-              marginHorizontal: 10,
-            }}
-          >
-            Update Your Information
-          </Button>
-        </View>
-      </View>
-    </View>
-  );
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  backIcon: {
-    marginVertical: 10,
-    marginHorizontal: 10,
-  },
-  infoContainer: {
-    paddingHorizontal: 10,
-  },
-  button: {
-    marginTop: 30,
-  },
+    container: {
+        flex: 1,
+    },
+    backIcon: {
+        marginVertical: 10,
+        marginHorizontal: 10,
+    },
+    infoContainer: {
+        paddingHorizontal: 10,
+    },
+    button: {
+        marginTop: 30,
+    },
 });

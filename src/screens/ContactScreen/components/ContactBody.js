@@ -11,18 +11,18 @@ export const ContactBody = () => {
       <View style={styles.info}>
         <TextIcon
           icon={require("../../../components/IconAnimation/location.json")}
-          text='14 Phan Ngữ'
+          text='E-Commerce System'
           url='mailto: anhquan291@gmail.com'
         />
         <TextIcon
           icon={require("../../../components/IconAnimation/email3.json")}
-          text='Anhquan291@gmail.com'
-          url='mailto: anhquan291@gmail.com'
+          text='tonthatquynhanh121020@gmail.com'
+          url='mailto: tonthatquynhanh121020@gmail.com'
         />
         <TextIcon
           icon={require("../../../components/IconAnimation/phone2.json")}
-          text='0968729194'
-          url='tel:0968729194'
+          text='0796854443'
+          url='tel:0796854443'
         />
       </View>
     </View>

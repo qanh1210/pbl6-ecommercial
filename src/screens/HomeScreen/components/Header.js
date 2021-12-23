@@ -14,6 +14,8 @@ import {
 } from 'react-native';
 //icon
 import { Ionicons } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons'; 
+
 //Colors
 import Colors from '../../../utils/Colors';
 //Search Item component
@@ -42,7 +44,7 @@ export class Header extends React.Component {
   //Search
   searchFilterFunction = (searchText) => {
     const data = this.props.products.filter((product) =>
-      product.filename.toLowerCase().includes(searchText.toLowerCase()),
+      product.name.toLowerCase().includes(searchText.toLowerCase()),
     );
     this.setState({ keyword: searchText, productsFilter: data });
   };
@@ -130,16 +132,16 @@ export class Header extends React.Component {
       0,
       headerPlatform,
     );
-    const _header_translate_y = Animated.interpolate(_diff_clamp_scroll_y, {
-      inputRange: [0, headerPlatform],
-      outputRange: [0, -headerPlatform],
-      extrapolate: 'clamp',
-    });
-    const _header_opacity = Animated.interpolate(_diff_clamp_scroll_y, {
-      inputRange: [0, headerPlatform],
-      outputRange: [1, 0],
-      extrapolate: 'clamp',
-    });
+    // const _header_translate_y = Animated.interpolate(_diff_clamp_scroll_y, {
+    //   inputRange: [0, headerPlatform],
+    //   outputRange: [0, -headerPlatform],
+    //   extrapolate: 'clamp',
+    // });
+    // const _header_opacity = Animated.interpolate(_diff_clamp_scroll_y, {
+    //   inputRange: [0, headerPlatform],
+    //   outputRange: [1, 0],
+    //   extrapolate: 'clamp',
+    // });
     // const ViewPlatForm = Platform.OS === "android" ? SafeAreaView : View;
     return (
       <>
@@ -150,12 +152,12 @@ export class Header extends React.Component {
             style={[
               styles.header,
               {
-                transform: [
-                  {
-                    translateY: _header_translate_y,
-                  },
-                ],
-                opacity: _header_opacity,
+                // transform: [
+                //   {
+                //     translateY: _header_translate_y,
+                //   },
+                // ],
+                // opacity: _header_opacity,
               },
             ]}
           >
@@ -170,13 +172,13 @@ export class Header extends React.Component {
                 />
               </TouchableOpacity>
               <View>
-                <Image
-                  source={require('../../../assets/Images/logoNoText.png')}
+                {/* <Image
+                  source={require('../../../assets/Images/logoShop2.png')}
                   style={{
-                    width: height < 668 ? 130 : 120,
+                    width: height < 295 ? 130 : 120,
                     resizeMode: 'contain',
                   }}
-                />
+                /> */}
               </View>
               <TouchableOpacity
                 activeOpacity={1}
@@ -230,13 +232,12 @@ export class Header extends React.Component {
           <View style={styles.content_safe_area}>
             {this.state.keyword === '' ? (
               <View style={styles.image_placeholder_container}>
-                <Image
-                  source={require('../../../assets/Images/logo1.png')}
+                {/* <Image
+                  source={require('../../../assets/Images/logoShop2.png')}
                   style={styles.image_placeholder}
-                />
+                /> */}
                 <Text style={styles.image_placeholder_text}>
-                  Nhập vào từ khóa{'\n'}
-                  để tìm kiếm :D
+                  Nhập vào từ khóa để tìm kiếm
                 </Text>
               </View>
             ) : (
@@ -359,7 +360,7 @@ const styles = StyleSheet.create({
   },
   image_placeholder_container: {
     flexDirection: 'column',
-    marginTop: 100,
+    marginTop: 80,
   },
   image_placeholder: {
     height: 80,
@@ -369,7 +370,7 @@ const styles = StyleSheet.create({
   image_placeholder_text: {
     textAlign: 'center',
     color: 'gray',
-    marginTop: 5,
+    // marginTop: 5,
   },
   search_item: {
     flexDirection: 'row',

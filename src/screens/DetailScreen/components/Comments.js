@@ -32,7 +32,7 @@ export const Comments = () => {
     <>
       <View style={styles.commentContainer}>
         <TouchableOpacity onPress={onOpen}>
-          <CustomText style={styles.title}>Comments</CustomText>
+          <CustomText style={styles.title}>View Comments</CustomText>
         </TouchableOpacity>
         <CustomText style={styles.commentCount}>{comments.length}</CustomText>
       </View>
@@ -47,12 +47,12 @@ export const Comments = () => {
                   <Image
                     style={styles.profilePic}
                     source={
-                      user.profilePicture.length === 0
-                        ? require("../../../assets/Images/defaultprofile.jpg")
-                        : { uri: user.profilePicture }
+                    //   user.profilePicture.length === 0
+                        require("../../../assets/Images/defaultprofile.jpg")
+                        // : { uri: user.profilePicture }
                     }
                   />
-                </View>
+                </View> 
                 <View
                   style={{
                     justifyContent: "center",

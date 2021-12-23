@@ -8,13 +8,13 @@ export default comments = [
     id: 2,
     username: "Kim Tinh",
     content:
-      "Mình mua vòng này mang được hơn 1 tháng, vòng rất sáng chất lượng tốt. Cảm ơn Shop nhiều",
+      "Mình mua sản phẩm này mang được hơn 1 tháng, cảm thấy chất lượng tốt. Cảm ơn Shop nhiều",
   },
   {
     id: 3,
     username: "Nam Thọ",
     content:
-      "Vòng đẹp, màu sắc như hình, chất lượng thì để mang một thời gian nữa rồi vào đánh giá tiếp ^^",
+      "Hình dáng sản phẩm, màu sắc như hình, chất lượng thì để mang một thời gian nữa rồi vào đánh giá tiếp ^^",
   },
   {
     id: 4,
@@ -29,6 +29,6 @@ export default comments = [
   {
     id: 6,
     username: "Khiêm",
-    content: "Vòng đẹp, chất lượng đúng như quảng cảo",
+    content: "Hàng đẹp, chất lượng đúng như quảng cảo",
   },
 ];

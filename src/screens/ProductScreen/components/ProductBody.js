@@ -25,14 +25,26 @@ export const ProductBody = ({
   searchFilterFunction,
 }) => {
   const DATA = [];
-  const bracelets = productsFilter.filter(
-    (bracelet) => bracelet.type === 'bracelet',
-  );
-  const rings = productsFilter.filter((ring) => ring.type === 'ring');
-  const stones = productsFilter.filter((stone) => stone.type === 'stone');
-  DATA.push({ title: 'Vòng Chuối Ngọc', data: bracelets });
-  DATA.push({ title: 'Nhẫn Ruby', data: rings });
-  DATA.push({ title: 'Đá Quý', data: stones });
+  const nu = productsFilter.filter((nu) => nu.category.name === "Thời Trang Nữ");
+  const nam =productsFilter.filter((nam) => nam.category.name === "Thời Trang Nam");
+  const tv = productsFilter.filter((tv) => tv.category.name === "TV & Thiết Bị Điện Gia Dụng");
+  const dt = productsFilter.filter((dt) => dt.category.name === "Thiết Bị Điện Tử");
+  const sk = productsFilter.filter((sk) => sk.category.name === "Sức Khoẻ & Làm Đẹp");
+  const mb = productsFilter.filter((mb) => mb.category.name === "Hàng Mẹ, Bé & Đồ Chơi");
+  const st = productsFilter.filter((st) => st.category.name === "Siêu Thị Tạp Hoá");
+  const ds = productsFilter.filter((ds) => ds.category.name === "Hàng Gia Dụng Và Đời Sống");
+  const tt = productsFilter.filter((tt) => tt.category.name === "Thể Thao & Du Lịch");
+
+  DATA.push({ title: 'Thời Trang Nữ', data: nu });
+  DATA.push({ title: 'Thời Trang Nam', data: nam });
+  DATA.push({ title: 'TV & Thiết Bị Điện Gia Dụng', data: tv });
+  DATA.push({ title: 'Thiết Bị Điện Tử', data: dt });
+  DATA.push({ title: 'Sức Khoẻ & Làm Đẹp', data: sk });
+  DATA.push({ title: 'Hàng Mẹ, Bé & Đồ Chơi', data: mb });
+  DATA.push({ title: 'Siêu Thị Tạp Hoá', data: st });
+  DATA.push({ title: 'Hàng Gia Dụng Và Đời Sống', data: ds });
+  DATA.push({ title: 'Thể Thao & Du Lịch', data: tt });
+
   const scrollY = new Value(0);
   const sectionListRef = useRef(null);
   // const scrollToSection = (index) => {

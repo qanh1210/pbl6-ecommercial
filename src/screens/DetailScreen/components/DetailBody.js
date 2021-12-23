@@ -24,7 +24,7 @@ export const DetailBody = ({ item, color }) => {
         style={styles.footer_header}
       >
         <CustomText selectable={true} style={{ ...styles.title, color }}>
-          {item.filename}
+          {item.name}
         </CustomText>
         <NumberFormat
           style={{ color: "#fff", fontSize: 13 }}
@@ -73,10 +73,10 @@ export const DetailBody = ({ item, color }) => {
           <CustomText>Tình trạng: </CustomText>
           <CustomText>{item.standard}</CustomText>
         </View>
-        <View style={styles.infoContainer}>
+        {/* <View style={styles.infoContainer}>
           <CustomText>Xuất xứ: </CustomText>
           <CustomText>{item.origin}</CustomText>
-        </View>
+        </View> */}
         <CustomText
           style={{
             ...styles.title,

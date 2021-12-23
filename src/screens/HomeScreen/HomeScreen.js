@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProducts } from '../../reducers';
+import { fetchProducts, fetchCategories } from '../../reducers';
 //Colors
 import Colors from '../../utils/Colors';
 //Animation
@@ -36,6 +36,7 @@ export const HomeScreen = ({ navigation }) => {
   let scrollY = new Animated.Value(0);
   const user = useSelector((state) => state.auth.user);
   const products = useSelector((state) => state.store.products);
+//   const categories = useSelector((state) => state.store.categories);
   const isLoading = useSelector((state) => state.store.isLoading);
   const notification = useSelector((state) => state.auth.notification);
   //fetch Api
@@ -44,6 +45,7 @@ export const HomeScreen = ({ navigation }) => {
     const fetching = async () => {
       try {
         await dispatch(fetchProducts());
+        // await dispatch(fetchCategories());
       } catch (err) {
         alert(err);
       }
@@ -83,11 +85,12 @@ export const HomeScreen = ({ navigation }) => {
               { useNativeDriver: true },
             )}
             data={categories}
-            keyExtractor={(item) => item.name}
+            keyExtractor={(item) => item._id}
             renderItem={({ item }) => (
               <CategorySection
+                // key={item._id}
                 name={item.name}
-                bg={item.bg}
+                // bg={item.bg}
                 data={products}
                 navigation={navigation}
               />

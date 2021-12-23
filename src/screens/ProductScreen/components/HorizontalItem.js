@@ -30,11 +30,11 @@ const HorizontalItem = ({ item, navigation }) => {
           <Image
             style={{
               height: 90,
-              width: "100%",
+              width: "80%",
               resizeMode: "stretch",
               borderRadius: 15,
             }}
-            source={{ uri: item.thumb }}
+            source={{ uri: item.avatar }}
             onLoadStart={() => {
               setIsLoading(true);
             }}
@@ -49,8 +49,8 @@ const HorizontalItem = ({ item, navigation }) => {
           )}
         </TouchableOpacity>
         <View style={styles.info}>
-          <CustomText style={styles.title}>{item.filename}</CustomText>
-          <CustomText style={styles.subText}>Xuất xứ {item.origin}</CustomText>
+          <CustomText style={styles.title}>{item.name}</CustomText>
+          {/* <CustomText style={styles.subText}>Xuất xứ {item.origin}</CustomText> */}
           <View style={styles.rateContainer}>
             <View style={styles.rate}>
               <AntDesign name="star" color="#fed922" size={15} />

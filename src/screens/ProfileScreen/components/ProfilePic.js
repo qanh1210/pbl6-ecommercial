@@ -63,11 +63,11 @@ export const ProfilePic = ({
         <Image
           style={styles.profilePic}
           source={
-            imageUri.length === 0
-              ? user.profilePicture.length === 0
-                ? require("../../../assets/Images/defaultprofile.png")
-                : { uri: user.profilePicture }
-              : { uri: imageUri }
+            // imageUri.length === 0
+            //   user.user.avatar === " "
+                require("../../../assets/Images/defaultprofile.png")
+                // : { uri: user.user.avatar }
+            //   : { uri: imageUri }
           }
         />
         <View

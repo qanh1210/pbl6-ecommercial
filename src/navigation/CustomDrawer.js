@@ -58,10 +58,10 @@ export default (props) => {
       <DrawerContentScrollView {...props}>
         {Object.keys(user).length === 0 ? (
           <View style={{ alignItems: "center", marginVertical: 20 }}>
-            <Image
+            {/* <Image
               style={styles.logo}
               source={require("../assets/Images/logo1.png")}
-            />
+            /> */}
           </View>
         ) : (
           <>
@@ -72,9 +72,9 @@ export default (props) => {
                 <Image
                   style={styles.profilePic}
                   source={
-                    user.profilePicture.length === 0
-                      ? require("../assets/Images/defaultprofile.png")
-                      : { uri: user.profilePicture }
+                    // user.avatar === " "
+                    require("../assets/Images/defaultprofile.png")
+                    // : { uri: user.avatar }
                   }
                 />
               </TouchableOpacity>
@@ -96,7 +96,7 @@ export default (props) => {
                     paddingHorizontal: 10,
                   }}
                 >
-                  See your profile
+                  See your information
                 </Text>
               </View>
             </View>
@@ -105,26 +105,6 @@ export default (props) => {
         <View>
           <DrawerItemList state={newState} {...rest} />
           <Drawer.Section style={styles.drawerSection}></Drawer.Section>
-          <View style={styles.social}>
-            <OpenURL url={fbURL}>
-              <Image
-                style={{ resizeMode: "contain", width: 80, height: 80 }}
-                source={require("../assets/Images/social1.png")}
-              />
-            </OpenURL>
-            <OpenURL url={youtubeURL}>
-              <Image
-                style={{ resizeMode: "contain", width: 80, height: 80 }}
-                source={require("../assets/Images/social3.png")}
-              />
-            </OpenURL>
-            <OpenURL url={fbURL}>
-              <Image
-                style={{ resizeMode: "contain", width: 80, height: 80 }}
-                source={require("../assets/Images/social2.png")}
-              />
-            </OpenURL>
-          </View>
         </View>
       </DrawerContentScrollView>
       {Object.keys(user).length === 0 ? (
@@ -155,17 +135,6 @@ export default (props) => {
         />
       )}
 
-      <View style={styles.version}>
-        <DrawerItem
-          label={() => (
-            <CustomText
-              style={{ color: Colors.grey, fontFamily: "Roboto-LightItalic" }}
-            >
-              CatTuong App Version 1.0
-            </CustomText>
-          )}
-        />
-      </View>
     </View>
   );
 };

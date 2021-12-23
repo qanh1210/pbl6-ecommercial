@@ -69,6 +69,13 @@ export const PreOrderScreen = (props) => {
             total,
             cartId,
             carts,
+            // deliveryAddress,
+            // orderItems,
+            // name,
+            // phone,
+            // total,
+            // cartId,
+            // carts,
           },
         });
       } else {

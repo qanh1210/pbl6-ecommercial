@@ -20,14 +20,16 @@ export const OrderItem = ({ order }) => {
   const [showDetails, setShowDetails] = useState(false);
   const status = () => {
     switch (order.status) {
-      case "waiting":
+      case "pending":
         return 0;
-      case "confirmed":
+      case "shipping":
         return 1;
-      case "delivery":
+      case "done":
         return 2;
-      default:
+      case "over":
         return 3;
+      default:
+        return 4;
     }
   };
   return (
@@ -62,7 +64,7 @@ export const OrderItem = ({ order }) => {
 
             <View style={styles.textContainer}>
               <CustomText style={styles.text}>Địa chỉ: </CustomText>
-              <CustomText style={styles.detail}>{order.address}</CustomText>
+              <CustomText style={styles.detail}>{order.deliveryAddress}</CustomText>
             </View>
             <View style={styles.textContainer}>
               <CustomText style={styles.text}>Số điện thoại: </CustomText>

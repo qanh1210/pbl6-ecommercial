@@ -69,6 +69,7 @@ export const LoginStackScreen = () => (
     mode='modal'
   >
     <LoginStack.Screen name='LoginScreen' component={LoginScreen} />
+    <LoginStack.Screen name='SignupScreen' component={SignupScreen} />
     <LoginStack.Screen name='ForgetPwScreen' component={ForgetPwScreen} />
   </LoginStack.Navigator>
 );
@@ -76,9 +77,9 @@ export const LoginStackScreen = () => (
 const AuthStack = createStackNavigator();
 export const AuthStackScreen = () => (
   <AuthStack.Navigator screenOptions={{ headerShown: false }}>
-    <AuthStack.Screen name='AuthScreen' component={AuthScreen} />
+    {/* <AuthStack.Screen name='AuthScreen' component={AuthScreen} /> */}
     <AuthStack.Screen name='LoginScreen' component={LoginStackScreen} />
-    <AuthStack.Screen name='SignupScreen' component={SignupScreen} />
+    {/* <AuthStack.Screen name='SignupScreen' component={SignupScreen} /> */}
     <AuthStack.Screen
       name='FinishResetScreen'
       component={FinishResetPwScreen}
@@ -328,7 +329,7 @@ export const DrawerNavigator = () => {
         />
       ) : (
         <>
-          <Drawer.Screen
+          {/* <Drawer.Screen
             name='TouchId'
             component={TouchIdScreen}
             options={() => ({
@@ -352,7 +353,7 @@ export const DrawerNavigator = () => {
                 />
               ),
             })}
-          />
+          /> */}
           <Drawer.Screen
             name='Profile'
             component={ProfileStackScreen}

@@ -63,31 +63,31 @@ export const addToCart = (item) => {
     });
     const user = getState().auth.user;
     try {
-      const response = await timeoutPromise(
-        fetch(`${API_URL}/cart/post`, {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "auth-token": user.token,
-          },
-          method: "POST",
-          body: JSON.stringify({
-            userId: user.userid,
-            items: [
-              {
-                item: item._id,
-                quantity: 1,
-              },
-            ],
-          }),
-        })
-      );
-      if (!response.ok) {
-        dispatch({
-          type: CART_FAILURE,
-        });
-        throw new Error("Something went wrong!");
-      }
+    //   const response = await timeoutPromise(
+    //     fetch(`${API_URL}/cart/post`, {
+    //       headers: {
+    //         Accept: "application/json",
+    //         "Content-Type": "application/json",
+    //         "auth-token": user.token,
+    //       },
+    //       method: "POST",
+    //       body: JSON.stringify({
+    //         userId: user.userid,
+    //         items: [
+    //           {
+    //             item: item._id,
+    //             quantity: 1,
+    //           },
+    //         ],
+    //       }),
+    //     })
+    //   );
+    //   if (!response.ok) {
+    //     dispatch({
+    //       type: CART_FAILURE,
+    //     });
+    //     throw new Error("Something went wrong!");
+    //   }
       dispatch({
         type: "ADD_CART",
         cartItem: item,
@@ -106,25 +106,25 @@ export const removeFromCart = (cartId, itemId) => {
     });
     const user = getState().auth.user;
     try {
-      const response = await timeoutPromise(
-        fetch(`${API_URL}/cart/cartitem/${cartId}`, {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "auth-token": user.token,
-          },
-          method: "DELETE",
-          body: JSON.stringify({
-            item: itemId,
-          }),
-        })
-      );
-      if (!response.ok) {
-        dispatch({
-          type: CART_FAILURE,
-        });
-        throw new Error("Something went wrong!");
-      }
+    //   const response = await timeoutPromise(
+    //     fetch(`${API_URL}/cart/cartitem/${cartId}`, {
+    //       headers: {
+    //         Accept: "application/json",
+    //         "Content-Type": "application/json",
+    //         "auth-token": user.token,
+    //       },
+    //       method: "DELETE",
+    //       body: JSON.stringify({
+    //         item: itemId,
+    //       }),
+    //     })
+    //   );
+    //   if (!response.ok) {
+    //     dispatch({
+    //       type: CART_FAILURE,
+    //     });
+    //     throw new Error("Something went wrong!");
+    //   }
       dispatch({
         type: "REMOVE_FROM_CART",
         itemId,
@@ -142,26 +142,26 @@ export const decCartQuantity = (cartId, itemId) => {
     });
     const user = getState().auth.user;
     try {
-      const response = await timeoutPromise(
-        fetch(`${API_URL}/cart/cartitem/${cartId}`, {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "auth-token": user.token,
-          },
-          method: "PUT",
-          body: JSON.stringify({
-            item: itemId,
-            quantity: "decrease",
-          }),
-        })
-      );
-      if (!response.ok) {
-        dispatch({
-          type: CART_FAILURE,
-        });
-        throw new Error("Something went wrong!");
-      }
+    //   const response = await timeoutPromise(
+    //     fetch(`${API_URL}/cart/cartitem/${cartId}`, {
+    //       headers: {
+    //         Accept: "application/json",
+    //         "Content-Type": "application/json",
+    //         "auth-token": user.token,
+    //       },
+    //       method: "PUT",
+    //       body: JSON.stringify({
+    //         item: itemId,
+    //         quantity: "decrease",
+    //       }),
+    //     })
+    //   );
+    //   if (!response.ok) {
+    //     dispatch({
+    //       type: CART_FAILURE,
+    //     });
+    //     throw new Error("Something went wrong!");
+    //   }
       dispatch({
         type: "DES_CART_QUANTITY",
         cartItemId: itemId,
