@@ -107,6 +107,7 @@ const App = () => {
     "Roboto-Medium": require("./src/assets/Fonts/Roboto-Medium.ttf"),
     "Roboto-MediumItalic": require("./src/assets/Fonts/Roboto-MediumItalic.ttf"),
     "Roboto-Regular": require("./src/assets/Fonts/Roboto-Regular.ttf"),
+    "Courier": require("./src/assets/Fonts/FontsFree-Net-SLC_.ttf")
   });
   
   if (!loaded) {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native";
+import { View, StyleSheet, TouchableOpacity, FlatList, Image } from "react-native";
 //Colors
 import Colors from "../../../utils/Colors";
 //Item
@@ -32,6 +32,8 @@ export const OrderItem = ({ order }) => {
         return 4;
     }
   };
+  const total = +order.item.quantity * +order.item.price;
+
   return (
     <View style={styles.container}>
       <View style={styles.summary}>
@@ -83,13 +85,45 @@ export const OrderItem = ({ order }) => {
             </View>
 
             <CustomText style={styles.text}>Sản phẩm đã đặt:</CustomText>
-            <FlatList
-              data={order.items}
+            <View style={styles.container1}>
+              <View style={styles.left}>
+                <Image
+                  style={{
+                    width: "100%",
+                    height: 80,
+                    resizeMode: "stretch",
+                    borderRadius: 5,
+                  }}
+                  source={{ uri: order.item.avatar }}
+                />
+              </View>
+              <View style={styles.right}>
+                <View>
+                  <CustomText style={styles.title}>{order.item.name}</CustomText>
+                </View>
+                <NumberFormat
+                  value={total.toString()}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  suffix={" đ"}
+                  renderText={(formattedValue) => (
+                    <View style={styles.priceContainer}>
+                      <CustomText style={{ fontSize: 13, padding: 0 }}>
+                        SL: x {order.item.quantity}
+                      </CustomText>
+                      <CustomText style={styles.price}>{formattedValue}</CustomText>
+                    </View>
+                  )}
+                />
+              </View>
+            </View>
+            {/* <FlatList
+              data={order}
               keyExtractor={(item) => item.item._id}
               renderItem={({ item }) => {
                 return <ItemList item={item} />;
               }}
-            />
+            /> */}
             <View
               style={{
                 ...styles.textContainer,
@@ -99,7 +133,7 @@ export const OrderItem = ({ order }) => {
             >
               <CustomText style={styles.text}>Tổng tiền:</CustomText>
               <NumberFormat
-                price={order.totalAmount.toString()}
+                price={order.totalAmount}
                 style={{ fontSize: 15 }}
               />
             </View>
@@ -144,6 +178,37 @@ const styles = StyleSheet.create({
   steps: {
     width: "100%",
     height: 100,
+  },
+  left: {
+    width: "20%",
+    height: "100%",
+    alignItems: "center",
+  },
+  right: {
+    width: "80%",
+    paddingLeft: 15,
+    justifyContent: "space-between",
+  },
+  title: {
+    fontSize: 14,
+    fontWeight: "400",
+  },
+  container1: {
+    flex: 1,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.light_grey,
+    backgroundColor: "#fff",
+    flexDirection: "row",
+    paddingVertical: 10,
+    borderRadius: 5,
+  },
+  priceContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  price: {
+    fontSize: 13,
+    color: Colors.red,
   },
 });
 

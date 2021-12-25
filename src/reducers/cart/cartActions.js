@@ -180,22 +180,22 @@ export const resetCart = (cartId) => {
     });
     const user = getState().auth.user;
     try {
-      const response = await timeoutPromise(
-        fetch(`${API_URL}/cart/${cartId}`, {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "auth-token": user.token,
-          },
-          method: "DELETE",
-        })
-      );
-      if (!response.ok) {
-        dispatch({
-          type: CART_FAILURE,
-        });
-        throw new Error("Something went wrong!");
-      }
+      // const response = await timeoutPromise(
+      //   fetch(`${API_URL}/cart/${cartId}`, {
+      //     headers: {
+      //       Accept: "application/json",
+      //       "Content-Type": "application/json",
+      //       "auth-token": user.token,
+      //     },
+      //     method: "DELETE",
+      //   })
+      // );
+      // if (!response.ok) {
+      //   dispatch({
+      //     type: CART_FAILURE,
+      //   });
+      //   throw new Error("Something went wrong!");
+      // }
 
       dispatch({
         type: "RESET_CART",

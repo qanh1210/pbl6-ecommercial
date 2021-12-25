@@ -1,4 +1,4 @@
-import { API_URL } from "../../utils/Config";
+import { API_URL1 } from "../../utils/Config";
 import { timeoutPromise } from "../../utils/Tools";
 export const ORDER_LOADING = "ORDER_LOADING";
 export const ORDER_FAILURE = "ORDER_FAILURE";
@@ -18,11 +18,11 @@ export const fetchOrder = () => {
     }
     try {
       const response = await timeoutPromise(
-        fetch(`${API_URL}/order`, {
+        fetch(`https://pbl6.herokuapp.com/v1/orders/my-orders`, {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            "auth-token": user.token,
+            // "auth-token": user.token,
           },
           method: "GET",
         })
@@ -34,9 +34,10 @@ export const fetchOrder = () => {
         throw new Error("Something went wrong! Can't get your order");
       }
       const resData = await response.json();
-      const filterUserOrder = resData.content.filter(
-        (userOrder) => userOrder.userId._id === user.userid
-      );
+      const filterUserOrder = resData;
+      // .content.filter(
+      //   (userOrder) => userOrder.userId._id === user.userid
+      // );
       dispatch({
         type: FETCH_ORDER,
         orderData: filterUserOrder,
@@ -49,13 +50,13 @@ export const fetchOrder = () => {
 
 //Add order
 export const addOrder = (
-    token,
+    // token,
     orderItems,
-    name,
+    // name,
     totalAmount,
-    paymentMethod,
+    // paymentMethod,
     fullAddress,
-    phone
+    // phone
 ) => {
   return async (dispatch, getState) => {
     dispatch({
@@ -65,45 +66,45 @@ export const addOrder = (
     try {
       const response = await timeoutPromise(
         // fetch(`https://cbcf880m45.execute-api.eu-central-1.amazonaws.com/production/v1/orders`, {
-        fetch(`${API_URL}/order/post`, {
+        fetch(`https://pbl6.herokuapp.com/v1/orders`, {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
-              "auth-token": user.token,
+              // "auth-token": user.token,
             },
             method: "POST",
             body: JSON.stringify({
-              token,
-              orderInfo: {
-                userId: user.userid,
-                items: orderItems,
-                name,
-                totalAmount,
-                paymentMethod,
-                address: fullAddress,
-                phone,
-              }
+              // token,
+              // orderInfo: {
+              //   userId: user.userid,
+              //   items: orderItems,
+              //   name,
+              //   totalAmount,
+              //   paymentMethod,
+              //   address: fullAddress,
+              //   phone,
+              // }
             // //   userId: user.user._id,
-            // totalPrice: totalAmount,
-            // deliveryAddress: fullAddress,
-            // product: orderItems,
-            // status: 'pending'
+            totalPrice: totalAmount,
+            deliveryAddress: fullAddress,
+            product: orderItems,
+            status: 'pending'
             // //   paymentMethod,
             // //   phone,
             }),
           }));
         // });
-      if (!response.ok) {
-        dispatch({
-          type: ORDER_FAILURE,
-        });
-        throw new Error("Something went wrong!");
-      }
+      // if (!response.ok) {
+      //   dispatch({
+      //     type: ORDER_FAILURE,
+      //   });
+      //   throw new Error("Something went wrong!");
+      // }
       const resData = await response.json();
-      dispatch({
-        type: ADD_ORDER,
-        orderItem: resData,
-      });
+      // dispatch({
+      //   type: ADD_ORDER,
+      //   orderItem: resData,
+      // });
     } catch (err) {
       throw err;
     }
