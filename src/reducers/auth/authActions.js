@@ -27,7 +27,7 @@ const saveDataToStorage = (name, data) => {
   );
 };
 
-export const SignUp = (name, email, password) => {
+export const SignUp = (fullname, email, password) => {
   return async (dispatch) => {
     dispatch({
       type: AUTH_LOADING,
@@ -41,19 +41,19 @@ export const SignUp = (name, email, password) => {
           },
           method: 'POST',
           body: JSON.stringify({
-            name,
             email,
             password,
+            fullname
           }),
         }),
       );
-      if (!response.ok) {
-        const errorResData = await response.json();
-        dispatch({
-          type: AUTH_FAILURE,
-        });
-        throw new Error(errorResData.err);
-      }
+      // if (!response.ok) {
+      //   const errorResData = await response.json();
+      //   dispatch({
+      //     type: AUTH_FAILURE,
+      //   });
+      //   throw new Error(errorResData.err);
+      // }
       dispatch({
         type: SIGN_UP,
       });
